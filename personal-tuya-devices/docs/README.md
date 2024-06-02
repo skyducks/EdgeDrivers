@@ -81,11 +81,13 @@
 - [ ] The profile referenced matches a file name from `profiles` folder
 - [ ] The profile referenced uses "_" instead of "-"
 - [ ] The profile referenced was created by following the "Checklist for new profiles to be used by models"
+  - This step is only needed if the referenced profile is new
 - [ ] Attribute "datapoints" contains a list of datapoints
 - [ ] Each datapoint contains attributes id, command and base
 - [ ] Attribute "id" is the number of the datapoint
 - [ ] Attribute "command" is the command to be used to treat the corresponding datapoint
 - [ ] All new commands were created by following the "Checklist for new integrations with native capabilities"
+  - This step is only needed if the referenced command is new
 - [ ] Attribute "base" is a generic group of other attributes
 - [ ] Attribute "group" references the component of the profile (1=main, 2=main02, N=main0N)
 
