@@ -79,7 +79,7 @@
 ### Checklist for new integrations with native capabilities
 - [ ] Implementation added in `src/commands.lua`
   - Duplicate any existing command that best fit your need
-- [ ] Created new profile by following the [Checklist for new profiles to be used in generic mode](checklist-for-new-profiles-to-be-used-in-generic-mode)
+- [ ] Created new profile by following the [Checklist for new profiles to be used in generic mode](#checklist-for-new-profiles-to-be-used-in-generic-mode)
 
 ### Checklist for new models to represent new device
 - [ ] File name is `<manufacturer>` followed by the extension `.yaml`
@@ -89,13 +89,13 @@
 - [ ] Attribute "profiles" contains a single profile
 - [ ] The profile referenced matches a file name from `profiles` folder
 - [ ] The profile referenced uses "_" instead of "-"
-- [ ] The profile referenced was created by following the "Checklist for new profiles to be used by models"
+- [ ] The profile referenced was created by following the [Checklist for new profiles to be used by models](#checklist-for-new-profiles-to-be-used-by-models)
   - This step is only needed if the referenced profile is new
 - [ ] Attribute "datapoints" contains a list of datapoints
 - [ ] Each datapoint contains attributes id, command and base
 - [ ] Attribute "id" is the number of the datapoint
 - [ ] Attribute "command" is the command to be used to treat the corresponding datapoint
-- [ ] All new commands were created by following the "Checklist for new integrations with native capabilities"
+- [ ] All new commands were created by following the [Checklist for new integrations with native capabilities](#checklist-for-new-integrations-with-native-capabilities)
   - This step is only needed if the referenced command is new
 - [ ] Attribute "base" is a generic group of other attributes
 - [ ] Attribute "group" references the component of the profile (1=main, 2=main02, N=main0N)
