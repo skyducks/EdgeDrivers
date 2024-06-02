@@ -63,7 +63,7 @@
 - [ ] File extension is `.yaml`
 - [ ] File is in the folder "profiles"
 - [ ] There is a single component called `main`
-- [ ] Generic profile was updated by following the "Checklist for new preferences in the generic profile"
+- [ ] Generic profile was updated by following the [Checklist for new preferences in the generic profile](#checklist-for-new-preferences-in-the-generic-profile)
 
 ### Checklist for new profiles to be used by models
 
@@ -78,7 +78,8 @@
 
 ### Checklist for new integrations with native capabilities
 - [ ] Implementation added in `src/commands.lua`
-- [ ] Created new profile by following the "Checklist for new profiles to be used in generic mode"
+  - Duplicate any existing command that best fit your need
+- [ ] Created new profile by following the [Checklist for new profiles to be used in generic mode](checklist-for-new-profiles-to-be-used-in-generic-mode)
 
 ### Checklist for new models to represent new device
 - [ ] File name is `<manufacturer>` followed by the extension `.yaml`
