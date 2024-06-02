@@ -4,9 +4,12 @@
   - Each device maps its own states to datapoints
 - Capability is an abstract function (datapoint) that your device have
 - Command is the coding implementation of a capability that runs in the driver
+  - Commands are implemented at [/src/commands.lua](https://github.com/w35l3y/EdgeDrivers/blob/beta/personal-tuya-devices/src/commands.lua)
 - Profile is an abstract representation for visually grouping capabilities
   - The profile is loaded in the app
+  - Profiles are located at folder [/profiles](https://github.com/w35l3y/EdgeDrivers/tree/beta/personal-tuya-devices/profiles)
 - Model is an abstract representation for mapping the datapoints of your device for corresponding commands, using a specific profile by default
+  - Models are located at folder [/models](https://github.com/w35l3y/EdgeDrivers/tree/beta/personal-tuya-devices/models)
 
 ## Lifecycles
 
@@ -37,8 +40,13 @@
 
 ### Checklist for contributing with your integration - Start here!
 - [ ] Model created by following the [Checklist for new models to represent new device](#checklist-for-new-models-to-represent-new-device)
-  - [ ] If none of the existing normal profiles fit your device, then create a new one by following the [Checklist for new profiles to be used by models](#checklist-for-new-profiles-to-be-used-by-models)
   - [ ] If none of the existing commands fit your device for an specific datapoint, then create a new one by following the [Checklist for new integrations with native capabilities](#checklist-for-new-integrations-with-native-capabilities)
+    - Usually, you will need a new command if there is a new capability
+    - In other words, when none of the existing predefined devices have the same capability
+    - This is the list of native capabilities developed by ST: [Production Capabilities](https://developer.smartthings.com/docs/devices/capabilities/capabilities-reference) and [Proposed Capabilities](https://developer.smartthings.com/docs/devices/capabilities/proposed)
+    - If you didn't find the native capability that you want in the repository, then a command is needed.<br />`https://github.com/search?type=code&q=repo%3Aw35l3y%2FEdgeDrivers+path%3Apersonal-tuya-devices%2Fsrc%2Fcommands.lua+<nativeCapabilityHere>`
+  - [ ] If none of the existing normal profiles fit your device, then create a new one by following the [Checklist for new profiles to be used by models](#checklist-for-new-profiles-to-be-used-by-models)
+    - Usually, you will need a new profile if there is a new command or your device contains a existing capability that isn't referenced in the profile
 
 ### Checklist for new preferences in the [generic profile](https://github.com/w35l3y/EdgeDrivers/blob/beta/personal-tuya-devices/profiles/generic-ef00-v1.yaml)
 - [ ] Attribute "name" is limited to 24 characters
