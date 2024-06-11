@@ -11,6 +11,8 @@ on:
       - "personal-tuya-devices/profiles/normal-multi-*.yaml"
       - "personal-tuya-devices/profiles/custom-multi-*.yaml"
       - "personal-tuya-devices/profiles/switch-all-multi-*.yaml"
+      - "personal-tuya-devices/profiles/child-dimmer-v1.yaml"
+      - "personal-tuya-devices/profiles/child-switch-v1.yaml"
 
 jobs:
   driver:

@@ -7,29 +7,11 @@ on:
       - beta
     paths:
       - "TEMPLATE.md"
-      - "default-clusters/TEMPLATE.md"
-      - "default-clusters/config-TEMPLATE.yaml"
       - "personal-tuya-devices/TEMPLATE.md"
-      - "personal-tuya-devices/versions/*/config-TEMPLATE.yaml"
 
 jobs:
   common:
     uses: ./.github/workflows/call-update-templates-common.yaml
     with:
-      environment: ${{ github.head_ref || github.ref_name }}
-    secrets: inherit
-  tuya_devices:
-    needs: common
-    uses: ./.github/workflows/call-update-templates.yaml
-    with:
-      driver: personal-tuya-devices
-      version: all
-      environment: ${{ github.head_ref || github.ref_name }}
-    secrets: inherit
-  default_clusters:
-    uses: ./.github/workflows/call-update-templates.yaml
-    with:
-      driver: default-clusters
-      version: all
       environment: ${{ github.head_ref || github.ref_name }}
     secrets: inherit
