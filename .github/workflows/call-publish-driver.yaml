@@ -53,7 +53,9 @@ jobs:
       environment: ${{ inputs.environment }}
     secrets: inherit
   publish:
-    needs: config, test
+    needs:
+      - config
+      - test
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     strategy:
