@@ -85,11 +85,16 @@ jobs:
           cache: "npm"
           cache-dependency-path: package-lock.json
       - name: Execute helpers
+        env:
+          WSL_1: "Pelo ENV"
         run: |
-          npm ci
+          echo "WSL_5=peloEcho;" >> $GITHUB_ENV
+          export WSL_2="Com export"
+          WSL_3="Sem export"
           export DRIVER_FOLDER=${{ inputs.driver }}
           export DRIVER_VERSION=${{ inputs.version }}
-          npm start
+          npm ci
+          WSL_4="Linha comando" npm start
       - name: Remove unwanted files before packaging
         working-directory: ${{ inputs.driver }}/src
         run: |
