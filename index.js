@@ -2,6 +2,7 @@ const { update_models_zigbee } = require("./helpers");
 
 console.log(
   "process.env",
+  process.env.WSL,
   process.env.DRIVER_FOLDER,
   process.env.DRIVER_VERSION
 );
