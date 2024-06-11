@@ -94,7 +94,7 @@ jobs:
           export DRIVER_FOLDER=${{ inputs.driver }}
           export DRIVER_VERSION=${{ inputs.version }}
           npm ci
-          WSL_4="Linha comando" npm start
+          WSL_4="Linha comando" node index.js
       - name: Remove unwanted files before packaging
         working-directory: ${{ inputs.driver }}/src
         run: |
