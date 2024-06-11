@@ -1,1 +1,0 @@
-return [[{"deviceLabel":"Thermostat","profiles":["normal_temphumi_v1"],"datapoints":[{"id":1,"command":"temperatureMeasurement","base":{"group":1,"rate":1000}},{"id":2,"command":"relativeHumidityMeasurement","base":{"group":1,"rate":100}}]}]]

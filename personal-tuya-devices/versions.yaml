@@ -1,0 +1,45 @@
+- id: all
+  includeSubdrivers:
+    - debug
+    - info
+    - settings
+    - signalStrength
+    - genericEF00
+  includedProfiles:
+    - generic
+    - child
+    - normal
+- id: generic
+  includeSubdrivers:
+    - debug
+    - info
+    - settings
+    - signalStrength
+    - genericEF00
+  includedProfiles:
+    - generic
+    - child
+- id: similar
+  includeSubdrivers:
+    - debug
+    - info
+    - settings
+    - signalStrength
+    - genericEF00
+  includedProfiles:
+    - normal
+- id: multiple
+  includeSubdrivers:
+    - debug
+    - info
+    - settings
+    - signalStrength
+    - genericEF00
+    - genericDimmer
+    - genericSwitch
+  includedProfiles:
+    - "child-dimmer-v1"
+    - "child-switch-v1"
+    - "normal-multi"
+    - "switch-all-multi"
+    - "custom-multi"

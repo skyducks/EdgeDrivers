@@ -7,7 +7,7 @@ on:
       - beta
     paths:
       - "default-clusters/**.yaml"
-      - "default-clusters/**.lua"
+      - "default-clusters/src/**.lua"
 
 jobs:
   call:

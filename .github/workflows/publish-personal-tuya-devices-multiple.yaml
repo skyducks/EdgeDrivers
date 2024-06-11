@@ -1,0 +1,22 @@
+name: publish-personal-tuya-devices-multiple
+
+on:
+  push:
+    branches:
+      - main
+      - beta
+    paths:
+      - "personal-tuya-devices/src/**.lua"
+      - "personal-tuya-devices/versions/multiple/*"
+      - "personal-tuya-devices/profiles/normal-multi-*.yaml"
+      - "personal-tuya-devices/profiles/custom-multi-*.yaml"
+      - "personal-tuya-devices/profiles/switch-all-multi-*.yaml"
+
+jobs:
+  driver:
+    uses: ./.github/workflows/call-publish-driver.yaml
+    with:
+      driver: personal-tuya-devices
+      version: multiple
+      environment: ${{ github.head_ref || github.ref_name }}
+    secrets: inherit

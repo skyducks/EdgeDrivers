@@ -7,6 +7,10 @@ on:
         description: "Folder name of the driver"
         required: true
         type: string
+      version:
+        description: "Folder name of the version"
+        required: true
+        type: string
       environment:
         description: Environment
         required: true
@@ -18,6 +22,10 @@ on:
         description: "Folder name of the driver"
         required: true
         type: string
+      version:
+        description: "Folder name of the version"
+        required: true
+        type: string
       environment:
         description: Environment
         required: true
@@ -25,6 +33,19 @@ on:
         default: beta
 
 jobs:
+  common:
+    uses: ./.github/workflows/call-update-templates-common.yaml
+    with:
+      environment: ${{ inputs.environment }}
+    secrets: inherit
+  config:
+    needs: common
+    uses: ./.github/workflows/call-update-templates.yaml
+    with:
+      driver: personal-tuya-devices
+      version: ${{ inputs.version }}
+      environment: ${{ inputs.environment }}
+    secrets: inherit
   test:
     uses: ./.github/workflows/call-test-driver.yaml
     with:
@@ -32,7 +53,7 @@ jobs:
       environment: ${{ inputs.environment }}
     secrets: inherit
   publish:
-    needs: test
+    needs: config, test
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     strategy:
@@ -62,6 +83,9 @@ jobs:
           cache: "npm"
           cache-dependency-path: package-lock.json
       - name: Execute helpers
+        env:
+          DRIVER_FOLDER: ${{ inputs.driver }}
+          DRIVER_VERSION: ${{ inputs.version }}
         run: |
           npm ci
           npm start
@@ -82,6 +106,6 @@ jobs:
         run: |
           echo "$(pwd)" >> $GITHUB_PATH
       - name: Publish
-        run: smartthings edge:drivers:package ${{ inputs.driver }} --channel=${{ vars.SMARTTHINGS_CHANNEL }}
+        run: smartthings edge:drivers:package ${{ inputs.driver }}/${{ inputs.version }} --channel=${{ vars.SMARTTHINGS_CHANNEL }}
         env:
           SMARTTHINGS_TOKEN: ${{ secrets.SMARTTHINGS_TOKEN }}

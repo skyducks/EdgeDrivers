@@ -1,1 +1,0 @@
-return [[{"deviceLabel":"Presence Sensor","profiles":["normal_presenceSensor_v2"],"datapoints":[{"id":1,"command":"presenceSensor","base":{"group":1}}]}]]

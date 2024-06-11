@@ -7,7 +7,7 @@ on:
       - beta
     paths:
       - "personal-tuya-devices/**.yaml"
-      - "personal-tuya-devices/**.lua"
+      - "personal-tuya-devices/src/**.lua"
 
 jobs:
   call:

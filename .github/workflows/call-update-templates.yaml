@@ -7,6 +7,10 @@ on:
         description: "Folder name of the driver"
         required: true
         type: string
+      version:
+        description: "Folder name of the version"
+        required: true
+        type: string
       environment:
         description: Environment
         required: true
@@ -16,6 +20,10 @@ on:
     inputs:
       driver:
         description: "Folder name of the driver"
+        required: true
+        type: string
+      version:
+        description: "Folder name of the version"
         required: true
         type: string
       environment:
@@ -49,7 +57,7 @@ jobs:
         uses: varunsridharan/action-dynamic-readme@main
         with:
           files: |
-            ${{ inputs.driver }}/config-TEMPLATE.yml=${{ inputs.driver }}/config.yaml
+            ${{ inputs.driver }}/${{ inputs.version }}/config-TEMPLATE.yaml=${{ inputs.driver }}/${{ inputs.version }}/config.yaml
           committer_name: github-actions[bot]
           committer_email: github-actions[bot]@users.noreply.github.com
           commit_message: "docs: update template file"

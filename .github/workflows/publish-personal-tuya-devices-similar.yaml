@@ -1,0 +1,20 @@
+name: publish-personal-tuya-devices-similar
+
+on:
+  push:
+    branches:
+      - main
+      - beta
+    paths:
+      - "personal-tuya-devices/src/**.lua"
+      - "personal-tuya-devices/versions/similar/*"
+      - "personal-tuya-devices/profiles/normal-*.yaml"
+
+jobs:
+  driver:
+    uses: ./.github/workflows/call-publish-driver.yaml
+    with:
+      driver: personal-tuya-devices
+      version: similar
+      environment: ${{ github.head_ref || github.ref_name }}
+    secrets: inherit
