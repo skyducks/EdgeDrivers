@@ -85,12 +85,12 @@ jobs:
           cache: "npm"
           cache-dependency-path: package-lock.json
       - name: Execute helpers
-        env:
-          DRIVER_FOLDER: ${{ inputs.driver }}
-          DRIVER_VERSION: ${{ inputs.version }}
+        #env:
+        #  DRIVER_FOLDER: ${{ inputs.driver }}
+        #  DRIVER_VERSION: ${{ inputs.version }}
         run: |
           npm ci
-          npm start
+          DRIVER_FOLDER=${{ inputs.driver }} DRIVER_VERSION=${{ inputs.version }} npm start
       - name: Remove unwanted files before packaging
         working-directory: ${{ inputs.driver }}/src
         run: |
