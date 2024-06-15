@@ -220,7 +220,7 @@ jobs:
           echo "$(pwd)" >> $GITHUB_PATH
       - name: Run tests
         id: test
-        working-directory: ${{ inputs.driver }}/src
+        working-directory: ${{ inputs.driver }}/versions/${{ inputs.version }}/src
         run: lua test/init.lua
         env:
           SMARTTHINGS_TOKEN: ${{ secrets.SMARTTHINGS_TOKEN }}

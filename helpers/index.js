@@ -1,6 +1,6 @@
 const fs = require("fs");
 const yaml = require("js-yaml");
-const pathModule = require('path');
+const pathModule = require("path");
 
 function update_models_lan(path = ".", getdir = () => "") {
   const MODEL_FOLDER = path + "/services/";
@@ -33,36 +33,56 @@ function update_models_lan(path = ".", getdir = () => "") {
 }
 
 function update_models_zigbee(path = ".", version) {
-  const versionModel = yaml.load(fs.readFileSync(path + "/versions.yaml", { encoding: "utf-8" })).find(({id}) => id === version)
+  const versionModel = yaml
+    .load(fs.readFileSync(path + "/versions.yaml", { encoding: "utf-8" }))
+    .find(({ id }) => id === version);
   if (!versionModel) {
-    console.log("Version not found ($DRIVER_VERSION=%s)", version)
-    return
+    console.log("Version not found ($DRIVER_VERSION=%s)", version);
+    return;
   }
 
-  const versionPath = path + (version?"/versions/" + version:"")
+  const versionPath = path + (version ? "/versions/" + version : "");
 
-  const profilePrefixes = versionModel.includedProfiles.map(value => ({value,regex:new RegExp("^" + value + "-[^-]+-v\\d+$")}))
+  const profilePrefixes = versionModel.includedProfiles.map((value) => ({
+    value,
+    regex: new RegExp("^" + value + "-[^-]+-v\\d+$"),
+  }));
+
+  if (fs.existsSync(versionPath + "/src")) {
+    fs.rmSync(versionPath + "/src", { recursive: true });
+  }
+
+  fs.cpSync(path + "/src", versionPath + "/src", {
+    recursive: true,
+  });
 
   if (fs.existsSync(versionPath + "/profiles")) {
-    fs.rmSync(versionPath + "/profiles", {recursive:true})
+    fs.rmSync(versionPath + "/profiles", { recursive: true });
   }
 
   fs.cpSync(path + "/profiles", versionPath + "/profiles", {
     recursive: true,
     filter: (src) => {
-      const name = pathModule.parse(src).name
-      return name === "profiles" || profilePrefixes.some(({value,regex}) => value === name || regex.test(name))
-    }
-  })
+      const name = pathModule.parse(src).name;
+      return (
+        name === "profiles" ||
+        profilePrefixes.some(
+          ({ value, regex }) => value === name || regex.test(name)
+        )
+      );
+    },
+  });
 
-  let modelsFolder = versionPath + "/src/models"
+  let modelsFolder = versionPath + "/src/models";
   if (!fs.existsSync(modelsFolder)) {
     fs.mkdirSync(modelsFolder, { recursive: true });
   }
   const fingerprints = yaml.load(
-    fs.readFileSync(versionPath + "/STATIC-fingerprints.yaml", { encoding: "utf-8" })
+    fs.readFileSync(versionPath + "/STATIC-fingerprints.yaml", {
+      encoding: "utf-8",
+    })
   );
-  const directoriesWithModels = []
+  const directoriesWithModels = [];
   const MODEL_FOLDER = path + "/models/";
   const directories = fs.readdirSync(MODEL_FOLDER);
   directories.forEach((directory) => {
@@ -77,19 +97,19 @@ function update_models_zigbee(path = ".", version) {
         })
       );
       if (!obj) {
-        return
+        return;
       }
       let deviceProfileName = obj.profiles[0].replace(/_/g, "-");
-      if (!profilePrefixes.some(({regex}) => regex.test(deviceProfileName))) {
-        return
+      if (!profilePrefixes.some(({ regex }) => regex.test(deviceProfileName))) {
+        return;
       }
 
-      let mfrFolder = versionPath + "/src/models/" + SPECIFIC_MODEL
+      let mfrFolder = versionPath + "/src/models/" + SPECIFIC_MODEL;
       if (!fs.existsSync(mfrFolder)) {
         fs.mkdirSync(mfrFolder, { recursive: true });
       }
 
-      directoriesWithModels.push(directory)
+      directoriesWithModels.push(directory);
 
       let mfr = file.replace(".yaml", "");
       fs.writeFileSync(
@@ -115,7 +135,7 @@ function update_models_zigbee(path = ".", version) {
       });
     });
     if (!manufacturers.length) {
-      return
+      return;
     }
     fs.writeFileSync(
       versionPath + "/src/models/" + SPECIFIC_MODEL + "init.lua",
