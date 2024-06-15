@@ -1,5 +1,4 @@
 name: call-test-driver
-
 on:
   workflow_call:
     inputs:
@@ -7,6 +6,11 @@ on:
         description: "Folder name of the driver"
         required: true
         type: string
+      version:
+        description: "Folder name of the version"
+        required: true
+        type: string
+        default: all
       environment:
         description: Environment
         required: true
@@ -18,17 +22,25 @@ on:
         description: "Folder name of the driver"
         required: true
         type: string
+      version:
+        description: "Folder name of the version"
+        required: true
+        type: string
+        default: all
       environment:
         description: Environment
         required: true
         type: string
         default: beta
-
+env:
+  WSL_1: OK
 jobs:
   test_latest:
     continue-on-error: true
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
+    env:
+      WSL_2: OK
     strategy:
       fail-fast: false
       matrix:
@@ -55,7 +67,12 @@ jobs:
           cache: "npm"
           cache-dependency-path: package-lock.json
       - name: Execute helpers
+        env:
+          WSL_5: OK
         run: |
+          echo "WSL_6=OK" >> "$GITHUB_ENV"
+          echo "WSL_7=OK" >> ".env"
+          echo "NODE_WSL_8=OK" >> ".env"
           npm ci
           npm start
       - name: Load/Install Lua
@@ -117,6 +134,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
+    env:
+      WSL_2: OK
     strategy:
       fail-fast: false
       matrix:
@@ -151,7 +170,12 @@ jobs:
           cache: "npm"
           cache-dependency-path: package-lock.json
       - name: Execute helpers
+        env:
+          WSL_5: OK
         run: |
+          echo "WSL_6=OK" >> "$GITHUB_ENV"
+          echo "WSL_7=OK" >> ".env"
+          echo "NODE_WSL_8=OK" >> ".env"
           npm ci
           npm start
       - name: Load/Install Lua
