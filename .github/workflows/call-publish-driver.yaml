@@ -30,6 +30,7 @@ on:
         description: "Folder name of the version"
         required: true
         type: string
+        default: all
       environment:
         description: Environment
         required: true
