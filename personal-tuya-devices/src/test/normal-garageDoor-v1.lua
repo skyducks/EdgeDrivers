@@ -66,7 +66,7 @@ test.register_message_test(
       direction = "receive",
       message = mock_parent_device:generate_info_changed({
         preferences = {
-          profile = "normal_garage_door_v1",
+          profile = "normal_garageDoor_v1",
           reverse = true,
         }
       })
@@ -94,7 +94,7 @@ test.register_message_test(
       direction = "receive",
       message = mock_parent_device:generate_info_changed({
         preferences = {
-          profile = "normal_garage_door_v1",
+          profile = "normal_garageDoor_v1",
           reverse = true,
         }
       })

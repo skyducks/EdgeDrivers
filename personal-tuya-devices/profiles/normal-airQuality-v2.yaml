@@ -34,10 +34,10 @@ preferences:
     preferenceType: enumeration
     definition:
       options:
-        normal_air_quality_v2: Normal
-        normal_air_quality_v1: No fine dust sensor
+        normal_airQuality_v2: Normal
+        normal_airQuality_v1: No fine dust sensor
         generic_ef00_v1: Generic
-      default: normal_air_quality_v2
+      default: normal_airQuality_v2
   - name: logLevel
     title: Log level
     required: true

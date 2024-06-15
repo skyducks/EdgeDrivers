@@ -66,7 +66,7 @@ test.register_message_test(
       direction = "receive",
       message = mock_parent_device:generate_info_changed({
         preferences = {
-          profile = "normal_air_quality_v2",
+          profile = "normal_airQuality_v2",
           tempOffset = -2.0,
           humidityOffset = 3.0,
         }

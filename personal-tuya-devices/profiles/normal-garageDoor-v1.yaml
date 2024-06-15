@@ -26,9 +26,9 @@ preferences:
     preferenceType: enumeration
     definition:
       options:
-        normal_garage_door_v1: Normal
+        normal_garageDoor_v1: Normal
         generic_ef00_v1: Generic
-      default: normal_garage_door_v1
+      default: normal_garageDoor_v1
   - name: logLevel
     title: Log level
     required: true

@@ -1,6 +1,6 @@
 deviceLabel: Air Quality
 profiles:
-  - normal_air_quality_v2
+  - normal_airQuality_v2
 datapoints:
   - id: 2
     command: fineDustSensor
