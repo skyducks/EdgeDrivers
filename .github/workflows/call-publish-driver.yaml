@@ -83,8 +83,9 @@ jobs:
           node-version: 16
           cache: "npm"
           cache-dependency-path: package-lock.json
-      - name: Execute helpers
+      - name: Execute helpers (v2)
         run: |
+          touch .env
           echo "DRIVER_FOLDER=${{ inputs.driver }}" >> ".env"
           echo "DRIVER_VERSION=${{ inputs.version }}" >> ".env"
           echo "WSL_1=OK" >> ".env"
