@@ -31,7 +31,9 @@ on:
         required: true
         type: string
         default: beta
-
+env:
+  DRIVER_FOLDER: ${{ inputs.driver }}
+  DRIVER_VERSION: ${{ inputs.version }}
 jobs:
   common:
     uses: ./.github/workflows/call-update-templates-common.yaml
@@ -85,16 +87,9 @@ jobs:
           cache: "npm"
           cache-dependency-path: package-lock.json
       - name: Execute helpers
-        env:
-          WSL_1: "Pelo ENV"
         run: |
-          echo "WSL_5=peloEcho;" >> $GITHUB_ENV
-          export WSL_2="Com export"
-          WSL_3="Sem export"
-          export DRIVER_FOLDER=${{ inputs.driver }}
-          export DRIVER_VERSION=${{ inputs.version }}
           npm ci
-          WSL_4="Linha comando" node index.js
+          npm start
       - name: Remove unwanted files before packaging
         working-directory: ${{ inputs.driver }}/src
         run: |
