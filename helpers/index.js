@@ -41,6 +41,12 @@ function update_models_zigbee(path = ".", version) {
     return;
   }
 
+  const tmp = path + "/tmp";
+
+  if (fs.existsSync(tmp)) {
+    fs.rmSync(tmp, { recursive: true });
+  }
+
   const versionPath = path + (version ? "/versions/" + version : "");
 
   const profilePrefixes = versionModel.includedProfiles.map((value) => ({
@@ -48,19 +54,15 @@ function update_models_zigbee(path = ".", version) {
     regex: new RegExp("^" + value + "-[^-]+-v\\d+$"),
   }));
 
-  if (fs.existsSync(versionPath + "/src")) {
-    fs.rmSync(versionPath + "/src", { recursive: true });
-  }
-
-  fs.cpSync(path + "/src", versionPath + "/src", {
+  fs.cpSync(path + "/src", tmp + "/src", {
     recursive: true,
   });
 
-  if (fs.existsSync(versionPath + "/profiles")) {
-    fs.rmSync(versionPath + "/profiles", { recursive: true });
-  }
+  fs.cpSync(versionPath, tmp, {
+    recursive: true,
+  });
 
-  fs.cpSync(path + "/profiles", versionPath + "/profiles", {
+  fs.cpSync(path + "/profiles", tmp + "/profiles", {
     recursive: true,
     filter: (src) => {
       const name = pathModule.parse(src).name;
@@ -73,12 +75,12 @@ function update_models_zigbee(path = ".", version) {
     },
   });
 
-  let modelsFolder = versionPath + "/src/models";
+  let modelsFolder = tmp + "/src/models";
   if (!fs.existsSync(modelsFolder)) {
     fs.mkdirSync(modelsFolder, { recursive: true });
   }
   const fingerprints = yaml.load(
-    fs.readFileSync(versionPath + "/STATIC-fingerprints.yaml", {
+    fs.readFileSync(tmp + "/STATIC-fingerprints.yaml", {
       encoding: "utf-8",
     })
   );
@@ -104,7 +106,7 @@ function update_models_zigbee(path = ".", version) {
         return;
       }
 
-      let mfrFolder = versionPath + "/src/models/" + SPECIFIC_MODEL;
+      let mfrFolder = tmp + "/src/models/" + SPECIFIC_MODEL;
       if (!fs.existsSync(mfrFolder)) {
         fs.mkdirSync(mfrFolder, { recursive: true });
       }
@@ -138,7 +140,7 @@ function update_models_zigbee(path = ".", version) {
       return;
     }
     fs.writeFileSync(
-      versionPath + "/src/models/" + SPECIFIC_MODEL + "init.lua",
+      tmp + "/src/models/" + SPECIFIC_MODEL + "init.lua",
       'local myutils = require "utils"\n\nreturn {\n  ' +
         manufacturers
           .map(
@@ -231,7 +233,7 @@ function update_models_zigbee(path = ".", version) {
       "\n\n- This is a list of predefined devices, but the driver is NOT limited to those.<br />It should work with any device that expose EF00 cluster.\n"
   );
   fs.writeFileSync(
-    versionPath + "/src/models/init.lua",
+    tmp + "/src/models/init.lua",
     "return {\n  " +
       directoriesWithModels
         .map((mdl) => '["' + mdl + '"] = require "models.' + mdl + '"')
@@ -239,7 +241,7 @@ function update_models_zigbee(path = ".", version) {
       "\n}"
   );
   fs.writeFileSync(
-    versionPath + "/fingerprints.yaml",
+    tmp + "/fingerprints.yaml",
     yaml.dump(
       {
         zigbeeManufacturer: fingerprints.zigbeeManufacturer.map(

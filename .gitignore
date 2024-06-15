@@ -51,8 +51,10 @@ README.md
 personal-tuya-devices/README.md
 personal-tuya-devices/config.yaml
 capabilities/*.json
-personal-tuya-devices/versions/*/fingerprints.yaml
-personal-tuya-devices/versions/*/profiles
-personal-tuya-devices/versions/*/src
 personal-tuya-devices/src/models/*/*.lua
 personal-tuya-devices/src/models/init.lua
+personal-tuya-devices/tmp
+
+event-stream
+test-alexa
+http-devices

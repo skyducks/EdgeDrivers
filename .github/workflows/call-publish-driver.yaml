@@ -97,7 +97,7 @@ jobs:
           npm ci
           npm start
       - name: Remove unwanted files before packaging
-        working-directory: ${{ inputs.driver }}/src
+        working-directory: ${{ inputs.driver }}/tmp
         run: |
           find . -name "*.md" -type f -delete
       - name: Load SmartThings CLI from cache
@@ -113,6 +113,6 @@ jobs:
         run: |
           echo "$(pwd)" >> $GITHUB_PATH
       - name: Publish
-        run: smartthings edge:drivers:package ${{ inputs.driver }}/${{ inputs.version }} --channel=${{ vars.SMARTTHINGS_CHANNEL }}
+        run: smartthings edge:drivers:package ${{ inputs.driver }}/tmp --channel=${{ vars.SMARTTHINGS_CHANNEL }}
         env:
           SMARTTHINGS_TOKEN: ${{ secrets.SMARTTHINGS_TOKEN }}
