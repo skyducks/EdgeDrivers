@@ -21,7 +21,11 @@ require "test.normal-single-dimmer-v1"
 --require "test.normal-irrigation-v1"
 --require "test.normal-irrigation-v2"
 
+--local t_utils = require "integration_test.utils"
+
 --local profile = t_utils.get_profile_definition("generic-ef00-v1.yaml")
+
+--local test = require "integration_test"
 
 --test.load_all_caps_from_profile(profile)
 --test.load_all_caps_from_profile(t_utils.get_profile_definition("child-enum-v1.yaml"))
