@@ -36,8 +36,6 @@ on:
         required: true
         type: string
         default: beta
-env:
-  WSL_1: OK
 jobs:
   common:
     uses: ./.github/workflows/call-update-templates-common.yaml
@@ -56,6 +54,7 @@ jobs:
     uses: ./.github/workflows/call-test-driver.yaml
     with:
       driver: ${{ inputs.driver }}
+      version: ${{ inputs.version }}
       environment: ${{ inputs.environment }}
     secrets: inherit
   publish:
@@ -66,8 +65,6 @@ jobs:
     environment: ${{ inputs.environment }}
     strategy:
       fail-fast: false
-    env:
-      WSL_2: OK
     steps:
       - name: Check SMARTTHINGS_TOKEN
         uses: actions/github-script@v3
@@ -92,21 +89,11 @@ jobs:
           node-version: 16
           cache: "npm"
           cache-dependency-path: package-lock.json
-      - name: Update variables
-        env:
-          WSL_3: OK
-        run: |
-          echo "WSL_4=OK" >> "$GITHUB_ENV"
       - name: Execute helpers
         env:
-          WSL_5: OK
+          DRIVER_FOLDER: ${{ inputs.driver }}
+          DRIVER_VERSION: ${{ inputs.version }}
         run: |
-          touch .env
-          echo "WSL_6=OK" >> "$GITHUB_ENV"
-          echo "DRIVER_FOLDER=${{ inputs.driver }}" >> ".env"
-          echo "DRIVER_VERSION=${{ inputs.version }}" >> ".env"
-          echo "WSL_7=OK" >> ".env"
-          echo "NODE_WSL_8=OK" >> ".env"
           npm ci
           npm start
       - name: Remove unwanted files before packaging
