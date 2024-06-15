@@ -57,10 +57,11 @@ jobs:
         uses: varunsridharan/action-dynamic-readme@main
         with:
           files: |
-            ${{ inputs.driver }}/${{ inputs.version }}/config-TEMPLATE.yaml=${{ inputs.driver }}/${{ inputs.version }}/config.yaml
+            ${{ inputs.driver }}/tmp/config-TEMPLATE.yaml=${{ inputs.driver }}/tmp/config.yaml
           committer_name: github-actions[bot]
           committer_email: github-actions[bot]@users.noreply.github.com
           commit_message: "docs: update template file"
+          confirm_and_push: false
         env:
           ENVIRONMENT: ${{ inputs.environment }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

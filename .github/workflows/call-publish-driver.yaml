@@ -42,14 +42,14 @@ jobs:
     with:
       environment: ${{ inputs.environment }}
     secrets: inherit
-  config:
-    needs: common
-    uses: ./.github/workflows/call-update-templates.yaml
-    with:
-      driver: personal-tuya-devices
-      version: ${{ inputs.version }}
-      environment: ${{ inputs.environment }}
-    secrets: inherit
+  #config:
+  #  needs: common
+  #  uses: ./.github/workflows/call-update-templates.yaml
+  #  with:
+  #    driver: ${{ inputs.driver }}
+  #    version: ${{ inputs.version }}
+  #    environment: ${{ inputs.environment }}
+  #  secrets: inherit
   test:
     uses: ./.github/workflows/call-test-driver.yaml
     with:
@@ -112,6 +112,18 @@ jobs:
       - name: Set Environment Variables
         run: |
           echo "$(pwd)" >> $GITHUB_PATH
+      - name: config.ymal
+        uses: varunsridharan/action-dynamic-readme@main
+        with:
+          files: |
+            ${{ inputs.driver }}/tmp/config-TEMPLATE.yaml=${{ inputs.driver }}/tmp/config.yaml
+          committer_name: github-actions[bot]
+          committer_email: github-actions[bot]@users.noreply.github.com
+          commit_message: "docs: update template file"
+          confirm_and_push: false
+        env:
+          ENVIRONMENT: ${{ inputs.environment }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish
         run: smartthings edge:drivers:package ${{ inputs.driver }}/tmp --channel=${{ vars.SMARTTHINGS_CHANNEL }}
         env:
