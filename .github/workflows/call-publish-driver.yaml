@@ -31,9 +31,6 @@ on:
         required: true
         type: string
         default: beta
-env:
-  DRIVER_FOLDER: ${{ inputs.driver }}
-  DRIVER_VERSION: ${{ inputs.version }}
 jobs:
   common:
     uses: ./.github/workflows/call-update-templates-common.yaml
@@ -88,6 +85,8 @@ jobs:
           cache-dependency-path: package-lock.json
       - name: Execute helpers
         run: |
+          echo "DRIVER_FOLDER=${{ inputs.driver }}" >> "$GITHUB_ENV"
+          echo "DRIVER_VERSION=${{ inputs.version }}" >> "$GITHUB_ENV"
           npm ci
           npm start
       - name: Remove unwanted files before packaging
