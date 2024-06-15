@@ -9,7 +9,7 @@ local utils = require "test.utils"
 
 local tuya_types = require "st.zigbee.generated.zcl_clusters.TuyaEF00.types"
 
-local profile = t_utils.get_profile_definition("normal-air-quality-v1.yaml")
+local profile = t_utils.get_profile_definition("normal-airQuality-v2.yaml")
 
 test.load_all_caps_from_profile(profile)
 
@@ -18,7 +18,7 @@ local mock_parent_device = test.mock_device.build_test_zigbee_device({
   zigbee_endpoints = {
     [1] = {
       id = 1,
-      manufacturer = "_TZE200_8ygsuhe1",
+      manufacturer = "_TZE200_dwcarsat",
       model = "TS0601",
       server_clusters = { 0x0000, 0xEF00 },
       client_clusters = { }
@@ -66,7 +66,7 @@ test.register_message_test(
       direction = "receive",
       message = mock_parent_device:generate_info_changed({
         preferences = {
-          profile = "normal_air_quality_v1",
+          profile = "normal_air_quality_v2",
           tempOffset = -2.0,
           humidityOffset = 3.0,
         }
@@ -98,12 +98,12 @@ test.register_message_test(
 )
 
 test.register_message_test(
-  "From zigbee (DP 2) - carbon dioxide measurement",
+  "From zigbee (DP 22) - carbon dioxide measurement",
   {
     {
       channel = "zigbee",
       direction = "receive",
-      message = { mock_parent_device.id, zcl_clusters.TuyaEF00.commands.DataReport:build_test_rx(mock_parent_device, { { 2, tuya_types.Int32(25) } }) }
+      message = { mock_parent_device.id, zcl_clusters.TuyaEF00.commands.DataReport:build_test_rx(mock_parent_device, { { 22, tuya_types.Int32(25) } }) }
     },
     {
       channel = "capability",
@@ -134,17 +134,35 @@ test.register_message_test(
 )
 
 test.register_message_test(
-  "From zigbee (DP 22) - formaldehyde measurement",
+  "From zigbee (DP 20) - formaldehyde measurement",
   {
     {
       channel = "zigbee",
       direction = "receive",
-      message = { mock_parent_device.id, zcl_clusters.TuyaEF00.commands.DataReport:build_test_rx(mock_parent_device, { { 22, tuya_types.Int32(2500) } }) }
+      message = { mock_parent_device.id, zcl_clusters.TuyaEF00.commands.DataReport:build_test_rx(mock_parent_device, { { 20, tuya_types.Int32(2500) } }) }
     },
     {
       channel = "capability",
       direction = "send",
-      message = mock_parent_device:generate_test_message("main", capabilities.formaldehydeMeasurement.formaldehydeLevel({value=25.0,unit="ppm"}))
+      message = mock_parent_device:generate_test_message("main", capabilities.formaldehydeMeasurement.formaldehydeLevel({value=25.0,unit="mg/m^3"}))
+    },
+  }, {
+    test_init = test_init_parent
+  }
+)
+
+test.register_message_test(
+  "From zigbee (DP 2) - fine dust sensor",
+  {
+    {
+      channel = "zigbee",
+      direction = "receive",
+      message = { mock_parent_device.id, zcl_clusters.TuyaEF00.commands.DataReport:build_test_rx(mock_parent_device, { { 2, tuya_types.Int32(12) } }) }
+    },
+    {
+      channel = "capability",
+      direction = "send",
+      message = mock_parent_device:generate_test_message("main", capabilities.fineDustSensor.fineDustLevel(12))
     },
   }, {
     test_init = test_init_parent

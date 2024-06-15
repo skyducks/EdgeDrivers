@@ -1,11 +1,11 @@
 | Target                     | Profiles (\*)                     |
 | -------------------------- | --------------------------------- |
-| normal-air-quality-v1      | Air Quality > No fine dust sensor |
-| normal-air-quality-v2      | Air Quality                       |
+| normal-airQuality-v1       | Air Quality > No fine dust sensor |
+| normal-airQuality-v2       | Air Quality                       |
 | normal-alarm-v1            | Alarm                             |
 | normal-alarm-v2            | Alarm > +Temp+Humidity            |
 | normal-contactSensor-v2    | Contact Sensor                    |
-| normal-garage-door-v1      | Garage Door                       |
+| normal-garageDoor-v1       | Garage Door                       |
 | normal-gasDetector-v1      | Gas Detector                      |
 | normal-irrigation-v1       | Irrigation                        |
 | normal-irrigation-v2       | Irrigation > +Mode (switch)       |

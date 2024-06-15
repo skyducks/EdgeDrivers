@@ -84,7 +84,7 @@ zigbeeManufacturer:
   - id: TS0601/_TZE200_8ygsuhe1
     model: TS0601
     manufacturer: _TZE200_8ygsuhe1
-    deviceProfileName: normal-air-quality-v1
+    deviceProfileName: normal-airQuality-v1
     deviceLabel: Air Quality
   - id: TS0601/_TZE200_9mahtqtg
     model: TS0601
@@ -154,7 +154,7 @@ zigbeeManufacturer:
   - id: TS0601/_TZE200_dwcarsat
     model: TS0601
     manufacturer: _TZE200_dwcarsat
-    deviceProfileName: normal-air-quality-v2
+    deviceProfileName: normal-airQuality-v2
     deviceLabel: Air Quality
   - id: TS0601/_TZE200_e3oitdyu
     model: TS0601
@@ -214,7 +214,7 @@ zigbeeManufacturer:
   - id: TS0601/_TZE200_nklqjk62
     model: TS0601
     manufacturer: _TZE200_nklqjk62
-    deviceProfileName: normal-garage-door-v1
+    deviceProfileName: normal-garageDoor-v1
     deviceLabel: Garage Door
   - id: TS0601/_TZE200_nw1r9hp6
     model: TS0601
@@ -259,7 +259,7 @@ zigbeeManufacturer:
   - id: TS0601/_TZE200_wfxuhoea
     model: TS0601
     manufacturer: _TZE200_wfxuhoea
-    deviceProfileName: normal-garage-door-v1
+    deviceProfileName: normal-garageDoor-v1
     deviceLabel: Garage Door
   - id: TS0601/_TZE200_whkgqxse
     model: TS0601
@@ -274,7 +274,7 @@ zigbeeManufacturer:
   - id: TS0601/_TZE200_yvx5lh6k
     model: TS0601
     manufacturer: _TZE200_yvx5lh6k
-    deviceProfileName: normal-air-quality-v1
+    deviceProfileName: normal-airQuality-v1
     deviceLabel: Air Quality
   - id: TS0601/_TZE200_zl1kmjqx
     model: TS0601
