@@ -3,7 +3,7 @@ const { update_models_zigbee } = require("./helpers");
 console.log(
   "dotenv",
   require("dotenv").config({
-    path: process.env.GITHUB_ENV,
+    //path: process.env.GITHUB_ENV,
     debug: true,
     encoding: "utf8",
   })

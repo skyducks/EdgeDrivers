@@ -83,14 +83,12 @@ jobs:
           node-version: 16
           cache: "npm"
           cache-dependency-path: package-lock.json
-      - name: Set env variables
-        run: |
-          echo "DRIVER_FOLDER=${{ inputs.driver }}" >> "$GITHUB_ENV"
-          echo "DRIVER_VERSION=${{ inputs.version }}" >> "$GITHUB_ENV"
-          echo "WSL_1=OK" >> "$GITHUB_ENV"
-          echo "NODE_WSL_2=OK" >> "$GITHUB_ENV"
       - name: Execute helpers
         run: |
+          echo "DRIVER_FOLDER=${{ inputs.driver }}" >> ".env"
+          echo "DRIVER_VERSION=${{ inputs.version }}" >> ".env"
+          echo "WSL_1=OK" >> ".env"
+          echo "NODE_WSL_2=OK" >> ".env"
           npm ci
           npm start
       - name: Remove unwanted files before packaging
