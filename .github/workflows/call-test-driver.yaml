@@ -117,7 +117,7 @@ jobs:
       - name: Set Environment Variables
         run: |
           echo "LUA_PATH=$(pwd)/${{ matrix.path }}/?.lua;$(pwd)/${{ matrix.path }}/?/init.lua;./?.lua;./?/init.lua;;" >> $GITHUB_ENV
-          echo "ST_CAPABILITY_CACHE=$(pwd)/capabilities/" >> $GITHUB_ENV
+          echo "ST_CAPABILITY_CACHE=$(pwd)/${{ inputs.driver }}/tmp/capabilities/" >> $GITHUB_ENV
           echo "$(pwd)" >> $GITHUB_PATH
       - name: Run tests
         id: test
@@ -216,7 +216,7 @@ jobs:
       - name: Set Environment Variables
         run: |
           echo "LUA_PATH=$(pwd)/${{ matrix.path }}/?.lua;$(pwd)/${{ matrix.path }}/?/init.lua;./?.lua;./?/init.lua;;" >> $GITHUB_ENV
-          echo "ST_CAPABILITY_CACHE=$(pwd)/capabilities/" >> $GITHUB_ENV
+          echo "ST_CAPABILITY_CACHE=$(pwd)/${{ inputs.driver }}/tmp/capabilities/" >> $GITHUB_ENV
           echo "$(pwd)" >> $GITHUB_PATH
       - name: Run tests
         id: test

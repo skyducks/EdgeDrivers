@@ -54,6 +54,10 @@ function update_models_zigbee(path = ".", version) {
     regex: new RegExp("^" + value + "-[^-]+-v\\d+$"),
   }));
 
+  fs.cpSync(path + "/capabilities", tmp + "/capabilities", {
+    recursive: true,
+  });
+
   fs.cpSync(path + "/src", tmp + "/src", {
     recursive: true,
   });
