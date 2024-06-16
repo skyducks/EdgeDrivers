@@ -110,7 +110,7 @@ jobs:
       - name: Set Environment Variables
         run: |
           echo "$(pwd)" >> $GITHUB_PATH
-      - name: config.ymal
+      - name: Generating config.yaml
         uses: varunsridharan/action-dynamic-readme@main
         with:
           files: |
