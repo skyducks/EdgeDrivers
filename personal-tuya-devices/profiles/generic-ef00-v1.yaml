@@ -15,7 +15,7 @@ components:
       - id: valleyboard16460.debug
         version: 1
     categories:
-      - name: Generic Sensor
+      - name: GenericSensor
 preferences:
   - name: profile
     title: Profile

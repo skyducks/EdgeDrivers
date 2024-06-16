@@ -10,7 +10,7 @@ components:
       - id: refresh
         version: 1
     categories:
-      - name: Smoke Detector
+      - name: SmokeDetector
 metadata:
   deviceType: SmokeDetector
   ocfDeviceType: x.com.st.d.sensor.smoke

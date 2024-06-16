@@ -10,7 +10,7 @@ components:
       - id: refresh
         version: 1
     categories:
-      - name: Light Sensor
+      - name: LightSensor
 metadata:
   deviceType: LightSensor
   ocfDeviceType: x.com.st.d.sensor.light

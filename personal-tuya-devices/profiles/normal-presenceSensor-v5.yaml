@@ -19,7 +19,7 @@ components:
       - id: valleyboard16460.debug
         version: 1
     categories:
-      - name: Presence Sensor
+      - name: PresenceSensor
 preferences:
   - name: profile
     title: Profile

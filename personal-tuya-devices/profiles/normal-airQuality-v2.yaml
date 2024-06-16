@@ -25,7 +25,7 @@ components:
       - id: valleyboard16460.debug
         version: 1
     categories:
-      - name: Air Quality Detector
+      - name: AirQualityDetector
 preferences:
   - name: profile
     title: Profile

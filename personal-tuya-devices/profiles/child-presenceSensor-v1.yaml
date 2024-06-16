@@ -10,7 +10,7 @@ components:
       - id: refresh
         version: 1
     categories:
-      - name: Presence Sensor
+      - name: PresenceSensor
 preferences:
   - preferenceId: reverse
     explicit: true

@@ -10,7 +10,7 @@ components:
       - id: refresh
         version: 1
     categories:
-      - name: Leak Sensor
+      - name: LeakSensor
 preferences:
   - preferenceId: reverse
     explicit: true
