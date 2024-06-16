@@ -28,6 +28,11 @@
     - genericEF00
   includedProfiles:
     - normal
+    - "child-bitmap-v1"
+    - "child-enum-v1"
+    - "child-raw-v1"
+    - "child-string-v1"
+    - "child-value-v1"
 - id: multiple
   includeSubdrivers:
     - debug
@@ -44,3 +49,8 @@
     - "normal-single"
     - "switch-all-multi"
     - "custom-multi"
+    - "child-bitmap-v1"
+    - "child-enum-v1"
+    - "child-raw-v1"
+    - "child-string-v1"
+    - "child-value-v1"

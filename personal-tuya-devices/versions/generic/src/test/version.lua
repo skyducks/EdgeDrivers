@@ -28,8 +28,3 @@ local profile = t_utils.get_profile_definition("generic-ef00-v1.yaml")
 local test = require "integration_test"
 
 test.load_all_caps_from_profile(profile)
-test.load_all_caps_from_profile(t_utils.get_profile_definition("child-enum-v1.yaml"))
-test.load_all_caps_from_profile(t_utils.get_profile_definition("child-value-v1.yaml"))
-test.load_all_caps_from_profile(t_utils.get_profile_definition("child-string-v1.yaml"))
-test.load_all_caps_from_profile(t_utils.get_profile_definition("child-bitmap-v1.yaml"))
-test.load_all_caps_from_profile(t_utils.get_profile_definition("child-raw-v1.yaml"))

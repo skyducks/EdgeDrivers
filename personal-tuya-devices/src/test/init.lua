@@ -6,6 +6,12 @@ require "test.myutils"
 
 require "test.version"
 
+test.load_all_caps_from_profile(t_utils.get_profile_definition("child-bitmap-v1.yaml"))
+test.load_all_caps_from_profile(t_utils.get_profile_definition("child-enum-v1.yaml"))
+test.load_all_caps_from_profile(t_utils.get_profile_definition("child-raw-v1.yaml"))
+test.load_all_caps_from_profile(t_utils.get_profile_definition("child-string-v1.yaml"))
+test.load_all_caps_from_profile(t_utils.get_profile_definition("child-value-v1.yaml"))
+
 zigbee_test_utils.prepare_zigbee_env_info()
 
 test.set_test_init_function(function()
