@@ -1,14 +1,3 @@
 zigbeeManufacturer: []
-zigbeeGeneric:
-  - id: "GenericEF00"
-    deviceProfileName: generic-ef00-v1
-    deviceLabel: Generic EF00 Device
-    clusters:
-      server:
-        - 0x0000
-        - 0xEF00
-zigbeeThing:
-  - id: "GenericThingEF00"
-    deviceProfileName: generic-ef00-v1
-    deviceLabel: Generic Thing EF00 Device
-    isJoinable: false
+zigbeeGeneric: []
+zigbeeThing: []
