@@ -8,6 +8,8 @@ on:
     paths:
       - "TEMPLATE.md"
       - "personal-tuya-devices/TEMPLATE.md"
+      - "personal-tuya-devices/BREAKING.md"
+      - "personal-tuya-devices/DEVICES.md"
 
 jobs:
   common:
