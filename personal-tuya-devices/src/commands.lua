@@ -318,10 +318,14 @@ local defaults = {
     attribute = "carbonMonoxideLevel",
     rate_name = "rate",
     rate = 100,
+    unit = "ppm",
     reportingInterval = 1,
     from_zigbee = function (self, value, device)
       local pref = get_child_or_parent(device, self.group).preferences
-      return 100 * to_number(value) / get_value(pref[self.rate_name], self.rate)
+      return {
+        value = 100 * to_number(value) / get_value(pref[self.rate_name], self.rate),
+        unit = self.unit
+      }
     end,
   },
   -- colorControl = {
