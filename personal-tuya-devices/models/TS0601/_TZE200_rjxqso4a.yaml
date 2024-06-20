@@ -34,7 +34,7 @@ datapoints:
     command: audioMute
     base:
       group: 1
-  - id: -16
+  - id: -1 # should be audio datapoint!
     command: momentaryAudioMuteTestCapability
     base:
       group: 1
