@@ -7,6 +7,7 @@ on:
       - beta
     paths:
       - "personal-tuya-devices/src/**.lua"
+      - "personal-tuya-devices/models/**.lua"
       - "personal-tuya-devices/versions/all/*"
       - "personal-tuya-devices/profiles/generic-*.yaml"
       - "personal-tuya-devices/profiles/child-*.yaml"
