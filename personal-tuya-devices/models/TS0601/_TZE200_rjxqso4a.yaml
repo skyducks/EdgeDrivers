@@ -24,6 +24,7 @@ datapoints:
       group: 1
       capability: carbonMonoxideDetector
       attribute: carbonMonoxide
+      type: enum
       on: tested
       off: clear
   - id: 15

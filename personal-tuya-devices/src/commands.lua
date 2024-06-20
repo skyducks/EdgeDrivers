@@ -473,11 +473,13 @@ local defaults = {
     end,
   },
   testCapability = {
+    type = "bool",
     create_event = function (self, value, device, force_child)  -- from_zigbee
       return self.capability and self.attribute and capabilities[self.capability][self.attribute](to_number(value) == 1 and self.on or self.off) or nil
     end,
   },
   momentaryAudioMuteTestCapability = {
+    type = "bool",
     capability = "momentary",
     create_event = function (self, value, device, force_child, datapoints)  -- from_zigbee
       return nil
@@ -486,9 +488,15 @@ local defaults = {
       local cmd = datapoints[self.testCapability]
       local state = device:get_latest_state(command.component, cmd.capability, cmd.attribute, "clear", "clear")
       if state == "detected" then
+        if self.type == "enum" then
+          return { math.abs(self:get_dp(dpid, device)), data_types.Enum8(1) }  -- mute
+        end
         return { math.abs(self:get_dp(dpid, device)), data_types.Boolean(true) }  -- mute
       else
         device:set_field("tested", state ~= "tested")
+        if cmd.type == "enum" then
+          return { math.abs(self:get_dp(self.testCapability, device)), data_types.Enum8(state ~= "tested" and 1 or 0) }  -- tested
+        end
         return { math.abs(self:get_dp(self.testCapability, device)), data_types.Boolean(state ~= "tested") }  -- tested
       end
     end,
