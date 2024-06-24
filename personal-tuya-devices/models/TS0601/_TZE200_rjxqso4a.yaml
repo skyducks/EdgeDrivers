@@ -8,10 +8,10 @@
 
 deviceLabel: Carbon Monoxide Detector
 profiles:
-  - normal_smokeDetector_v1
+  - normal_coDetector_v1
 datapoints:
   - id: 1
-    command: smokeDetector
+    command: carbonMonoxideDetector
     base:
       group: 1
   - id: 2
@@ -22,21 +22,21 @@ datapoints:
     command: testCapability
     base:
       group: 1
-      capability: smokeDetector
-      attribute: smoke
+      capability: carbonMonoxideDetector
+      attribute: carbonMonoxide
       type: enum
       on: tested
       off: clear
-  # - id: 16
-  #   command: audioMute
-  #   base:
-  #     group: 1
+  - id: 15
+    command: battery
+    base:
+      group: 1
+  - id: 16
+    command: audioMute
+    base:
+      group: 1
   - id: -1 # should be audio datapoint!
     command: momentaryAudioMuteTestCapability
     base:
       group: 1
       testCapability: 9
-  - id: 15
-    command: battery
-    base:
-      group: 1
