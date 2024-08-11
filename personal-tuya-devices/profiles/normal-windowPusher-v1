@@ -1,0 +1,38 @@
+# https://developer.smartthings.com/docs/devices/device-profiles#categories
+# https://openconnectivityfoundation.github.io/devicemodels/docs/index.html
+# https://github.com/Koenkk/zigbee2mqtt/issues/22844
+name: "normal-windowPusher-v1"
+components:
+  - id: main
+    label: Window
+    capabilities:
+      - id: windowPusher
+        version: 1
+        config:
+          values:
+            - key: "{{enumCommands}}"
+              enabledValues:
+                - close
+                - open
+                - pause
+      - id: position
+        version: 1
+      - id: chargeState
+        version: 1
+      - id: battery
+        version: 1
+      - id: motorDirection
+        version: 1
+      - id: signalStrength
+        version: 1
+      - id: refresh
+        version: 1
+      - id: valleyboard16460.debug
+        version: 1
+    categories:
+      - name: Window
+metadata:
+  deviceType: Window
+  ocfDeviceType: oic.d.window
+  deviceTypeId: Window
+  mnmn: SmartThingsCommunity
