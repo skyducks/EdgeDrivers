@@ -336,6 +336,15 @@ zigbeeManufacturer:
     manufacturer: _TZE204_ztc6ggyl
     deviceProfileName: normal-presenceSensor-v1
     deviceLabel: Presence Sensor
+  - id: TS0601/_TZ3210_5rta89nj
+    model: TS0601
+    manufacturer: _TZ3210_5rta89nj
+    deviceProfileName: normal-windowPusher-v1
+    deviceLabel: Window Pusher
+    clusters:
+      server:
+        - 0x04
+        - 0xEF00
   - id: mcdj3aq/_TYST11_wmcdj3aq
     model: mcdj3aq
     manufacturer: _TYST11_wmcdj3aq
